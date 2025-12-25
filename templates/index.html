@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberAI Defense System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- BACKGROUND MATRIX EFFECT -->
+    <canvas id="matrixCanvas"></canvas>
+    <div class="scan-line"></div>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <span class="icon">🛡️</span> CyberAI <span class="highlight">DEFENSE SYSTEM</span>
+            </div>
+            
+            <div class="system-monitor">
+                <div class="mon-item">CPU: <span id="cpu-val" class="highlight">12%</span></div>
+                <div class="mon-item">RAM: <span id="ram-val" class="highlight">34%</span></div>
+                <div class="mon-item">NET: <span id="net-val" class="highlight">10Mbps</span></div>
+            </div>
+
+            <div class="header-controls">
+                <button id="muteBtn" class="icon-btn" onclick="toggleMute()" title="Mute Audio">🔊</button>
+                <button class="icon-btn" onclick="testAudio()" title="Test Audio System">🎵</button>
+            </div>
+
+            <div class="status-indicator">
+                SYSTEM STATUS: <span id="system-status" class="status-active">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- MAIN GRID -->
+        <div class="dashboard-grid">
+            
+            <!-- LEFT COLUMN: STATS -->
+            <div class="panel stats-panel">
+                <h2><span class="crosshair">✜</span> THREAT INTELLIGENCE</h2>
+                
+                <div class="stat-card" id="threat-card">
+                    <div class="stat-label">CURRENT THREAT LEVEL</div>
+                    <div class="stat-value" id="threat-level">ANALYZING...</div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-mini">
+                        <div class="label">TOTAL SCANS</div>
+                        <div class="value" id="total-scans">0</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="label">ATTACKS BLOCKED</div>
+                        <div class="value text-danger" id="attacks-blocked">0</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="attackChart"></canvas>
+                </div>
+                
+                <div class="chart-container" style="margin-top: 15px; height: 200px;">
+                    <h3>ATTACK DISTRIBUTION</h3>
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+
+        <!-- RIGHT COLUMN: CONTROLS & LOG -->
+        <div class="panel right-panel">
+            
+            <!-- CTRL PANEL -->
+            <div class="control-panel">
+                <h2><span class="crosshair">✜</span> COMMAND CENTER</h2>
+                
+                <div class="control-group">
+                    <label>THREAT SCENARIO</label>
+                    <div class="btn-group">
+                        <button onclick="setScenario('NORMAL')" class="btn btn-success active">NORMAL</button>
+                        <button onclick="setScenario('DDOS')" class="btn btn-danger">DDoS</button>
+                        <button onclick="setScenario('BRUTE_FORCE')" class="btn btn-warning">BRUTE</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>AI SENSITIVITY: <span id="thresh-val">35%</span></label>
+                    <input type="range" min="10" max="90" value="35" class="slider" oninput="setThreshold(this.value)">
+                </div>
+
+                <div class="control-group">
+                    <button onclick="exportCSV()" class="btn btn-action">⬇ DOWNLOAD INCIDENT REPORT</button>
+                </div>
+            </div>
+
+            <!-- FIREWALL MANAGER -->
+            <div class="control-panel" style="margin-top: 20px;">
+                <h2><span class="crosshair">✜</span> FIREWALL RULES</h2>
+                
+                <div class="input-group">
+                    <input type="text" id="rule-ip" placeholder="192.168.1.X" class="cyber-input">
+                </div>
+                <div class="btn-group" style="margin-top: 10px;">
+                    <button onclick="addRule('whitelist')" class="btn btn-success">✅ ALLOW</button>
+                    <button onclick="addRule('blacklist')" class="btn btn-danger">🚫 BLOCK</button>
+                </div>
+
+                <div id="active-rules" class="rules-list">
+                    <!-- Dynamic rules will appear here -->
+                    <div class="rule-item">Loading rules...</div>
+                </div>
+            </div>
+
+            <!-- MAP -->
+            <div class="map-container">
+                <div class="map-overlay">GLOBAL THREAT MAP</div>
+                <canvas id="worldMap"></canvas>
+            </div>
+
+            <!-- LOGS -->
+            <h2><span class="crosshair">✜</span> LIVE TRAFFIC LOG</h2>
+            <div class="console-window" id="console-window">
+                <!-- Logs will appear here -->
+                <div class="log-entry system-msg">> INITIALIZING AI NEURAL NETWORK...</div>
+                <div class="log-entry system-msg">> CONNECTED TO SENSOR GRID `ALPHA-1`</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+  </body>
+</html>
