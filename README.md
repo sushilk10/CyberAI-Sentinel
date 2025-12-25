@@ -31,7 +31,7 @@ Before running the project, ensure your system meets the following requirements:
 Follow these steps exactly to get the system running in an isolated environment.
 
 ### Step 1: Clone and Prepare
-Open your terminal in the project root directory (`cyberproject`).
+Open your terminal in the project root directory (`CyberAI-Sentinel`).
 
 ### Step 2: Create a Virtual Environment (Recommended)
 This keeps the project dependencies separate from your system Python.
